@@ -1,0 +1,1638 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/25/2025 7:52:51 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SRUTHI"
+  DTS:CreatorName="SRUTHI\sruth"
+  DTS:DTSID="{6A849B09-0DC9-4BFA-94AF-B619C4A14834}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="16393"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{62F3F693-13AB-4C69-A351-F80C11AA6684}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[.sruthi]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1FD6AA3C-52B7-42AE-A3EF-AA7CC0D6FEB7}"
+      DTS:ObjectName=".sruthi">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SRUTHI;User ID=sruthi;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlVfQEgAbUkCcAHONq38ieQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA0Ze6wSbe7Ptu1Ts8hwpJBNM7DCgbsuL/OKt/CYC5fCQAAAAAOgAAAAAIAACAAAAA+BKYj1ebz+21Xdnc6ixXixEO01ci6wY8bGRa5eWtxrxAAAAAEzGQ7hBEymbaprhCPp21zQAAAAHPxlEMNN4ysdxLmLF3g1Nohe41MYBt+RInRVUgzbjQnWsnw0TCTGoU0ikWiHBsL+PGucB4rMYqEbC6h1IhrTbU</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{E2EE9DEC-0266-4E63-B12E-4C11955610CE}"
+      DTS:ObjectName="Flat File Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="16393"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\AutoTech_Data\Errors\inventory_variance_errors.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_id"
+              DTS:DTSID="{F9F49618-9262-4865-88FC-24A7D074A5D8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="location_id"
+              DTS:DTSID="{7B7E9BA4-4502-4DDF-962A-9583A19D66BF}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="current_stock"
+              DTS:DTSID="{13782E53-ACBB-4553-8582-4C040B637CAC}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="expected_stock"
+              DTS:DTSID="{E4E7312E-03D3-4345-9614-9E6AFCB4CD9C}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Variance"
+              DTS:DTSID="{C8A09E07-6C9F-4EB3-B9B7-7DB69AC59133}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Status"
+              DTS:DTSID="{CB4F638F-5602-4B3E-AEDE-D6A89E306867}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Flat File Connection Manager 1]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{7478F05F-CDCA-4D31-B264-510237F02176}"
+      DTS:ObjectName="Flat File Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="16393"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\AutoTech_Data\Logs\inventory_variance_log.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="product_id"
+              DTS:DTSID="{4CA6735D-6A8B-41AB-A492-FC49B628B623}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="location_id"
+              DTS:DTSID="{15B61F3A-15A9-4966-9B3E-0389F8A1EFCB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="current_stock"
+              DTS:DTSID="{F0C04291-09C8-4CBA-8F24-1D285235C7A4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="expected_stock"
+              DTS:DTSID="{21C86557-7405-4211-B7B6-9A82F8EF632A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Variance"
+              DTS:DTSID="{10111548-DEE4-4EAA-AAB6-29EF51D7FEA5}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Status"
+              DTS:DTSID="{6CCCE691-E321-4CEC-BF64-FDFE34D442DB}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Reconcile Stock Data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A92A1143-27A4-4EEA-9A4B-30732B6FA399}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Reconcile Stock Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Reconcile Stock Data.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{AAC318AD-0691-4EC7-BC77-7D8F26378A2F}"
+          DTS:EventID="-1663850144"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{37CD7BA1-3A3A-459E-87F0-5CC30E1ADD61}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Reconcile Stock Data.EventHandlers[OnError]\Log Error to Audit Trail"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{23853A5E-8FF3-4052-94EC-403245F4FFAC}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Log Error to Audit Trail"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{1FD6AA3C-52B7-42AE-A3EF-AA7CC0D6FEB7}"
+                  SQLTask:SqlStatementSource="INSERT INTO AUDIT_TRAIL (audit_id, table_name, operation_type, old_values, new_values, changed_by, change_date)&#xA;VALUES ('ERROR-' || TO_CHAR(SYSDATE, 'YYYYMMDDHH24MISS') || '-' || audit_seq.NEXTVAL, &#xA;        'RECONCILE_STOCK_DATA', &#xA;        'UPDATE',  -- Changed from 'ERROR' to 'UPDATE'&#xA;        'Error in stock reconciliation process', &#xA;        'Error Code: ' || ? || ' - Message: ' || ?, &#xA;        'SSIS_PACKAGE', &#xA;        SYSDATE)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="130"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Reconcile Stock Data\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Reconcile Stock Data\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Conditional Split.Inputs[Conditional Split Input].Columns[variance]"
+                      cachedDataType="i4"
+                      cachedName="variance"
+                      lineageId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reconcile Stock Data\Conditional Split.Outputs[Large Variance Rows]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Large Variance Rows"
+                  synchronousInputId="Package\Reconcile Stock Data\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ABS](#{Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]}) &gt; 100</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ABS(variance) &gt; 100</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Reconcile Stock Data\Conditional Split.Outputs[Acceptable Rows]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Acceptable Rows"
+                  synchronousInputId="Package\Reconcile Stock Data\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">[ABS](#{Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]}) &lt;= 100</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">ABS(variance) &lt;= 100</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Reconcile Stock Data\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Reconcile Stock Data\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Reconcile Stock Data\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Reconcile Stock Data\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reconcile Stock Data\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="16393"
+              name="Flat File Destination"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reconcile Stock Data\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[EXPECTED_STOCK]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="EXPECTED_STOCK"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[expected_stock]"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[CURRENT_STOCK]"
+                      cachedDataType="numeric"
+                      cachedName="CURRENT_STOCK"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[current_stock]"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[CURRENT_STOCK]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[product_id]"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[LOCATION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LOCATION_ID"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[location_id]"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[LOCATION_ID]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[variance]"
+                      cachedDataType="i4"
+                      cachedName="variance"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Variance]"
+                      lineageId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Output].Columns[Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[product_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[location_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="location_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[current_stock]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="current_stock" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[expected_stock]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="expected_stock" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Variance]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Variance" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Reconcile Stock Data\Flat File Destination 1"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Destination"
+              localeId="16393"
+              name="Flat File Destination 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reconcile Stock Data\Flat File Destination 1.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Flat File Connection Manager 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[Flat File Connection Manager 1]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[EXPECTED_STOCK]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="EXPECTED_STOCK"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[expected_stock]"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[CURRENT_STOCK]"
+                      cachedDataType="numeric"
+                      cachedName="CURRENT_STOCK"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[current_stock]"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[CURRENT_STOCK]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[product_id]"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[LOCATION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LOCATION_ID"
+                      cachedSortKeyPosition="2"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[location_id]"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[LOCATION_ID]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[variance]"
+                      cachedDataType="i4"
+                      cachedName="variance"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Variance]"
+                      lineageId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="14"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Status]"
+                      lineageId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Output].Columns[Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[product_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[location_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="location_id" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[current_stock]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="current_stock" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[expected_stock]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="expected_stock" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Variance]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Variance" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Status" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\Reconcile Stock Data\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Left Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Left Input].Columns[LOCATION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LOCATION_ID"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[LOCATION_ID]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Left Input].Columns[CURRENT_STOCK]"
+                      cachedDataType="numeric"
+                      cachedName="CURRENT_STOCK"
+                      cachedPrecision="10"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[CURRENT_STOCK]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Right Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Right Input].Columns[LOCATION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LOCATION_ID"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[LOCATION_ID]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Right Input].Columns[EXPECTED_STOCK]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="EXPECTED_STOCK"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[EXPECTED_STOCK]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]"
+                      dataType="wstr"
+                      length="38"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]"
+                      name="EXPECTED_STOCK">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Right Input].Columns[EXPECTED_STOCK]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[CURRENT_STOCK]"
+                      dataType="numeric"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[CURRENT_STOCK]"
+                      name="CURRENT_STOCK"
+                      precision="10">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Left Input].Columns[CURRENT_STOCK]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Right Input].Columns[PRODUCT_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Right Input].Columns[LOCATION_ID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source_inv_mast"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT product_id, location_id, current_stock
+FROM INVENTORY_MASTER
+WHERE active_status = 'Y'</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.sruthi]"
+                  connectionManagerRefId="Package.ConnectionManagers[.sruthi]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_ID]"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ID]"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[CURRENT_STOCK]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].ExternalColumns[CURRENT_STOCK]"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].Columns[CURRENT_STOCK]"
+                      name="CURRENT_STOCK"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="LOCATION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output].ExternalColumns[CURRENT_STOCK]"
+                      dataType="numeric"
+                      name="CURRENT_STOCK"
+                      precision="10" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[CURRENT_STOCK]"
+                      dataType="numeric"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[CURRENT_STOCK]"
+                      name="CURRENT_STOCK"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source_inv_txn"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT product_id, location_id, SUM(quantity) as expected_stock
+FROM INVENTORY_TRANSACTIONS
+WHERE trans_date &lt;= SYSDATE
+GROUP BY product_id, location_id</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.sruthi]"
+                  connectionManagerRefId="Package.ConnectionManagers[.sruthi]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output]"
+                  isSorted="true"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_ID]"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      sortKeyPosition="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ID]"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID"
+                      sortKeyPosition="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[EXPECTED_STOCK]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].ExternalColumns[EXPECTED_STOCK]"
+                      length="38"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].Columns[EXPECTED_STOCK]"
+                      name="EXPECTED_STOCK"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="LOCATION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output].ExternalColumns[EXPECTED_STOCK]"
+                      dataType="wstr"
+                      length="38"
+                      name="EXPECTED_STOCK" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[EXPECTED_STOCK]"
+                      dataType="wstr"
+                      length="38"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[EXPECTED_STOCK]"
+                      name="EXPECTED_STOCK" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reconcile Stock Data\status der_col"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="status der_col"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Reconcile Stock Data\status der_col.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\status der_col.Inputs[Derived Column Input].Columns[variance]"
+                      cachedDataType="i4"
+                      cachedName="variance"
+                      lineageId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Reconcile Stock Data\status der_col.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Output].Columns[Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="14"
+                      lineageId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ABS](#{Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]}) &gt; 100 ? "Large Variance" : "Acceptable"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ABS(variance) &gt; 100 ? "Large Variance" : "Acceptable"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Reconcile Stock Data\status der_col.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Reconcile Stock Data\variance der_col"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="variance der_col"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Reconcile Stock Data\variance der_col.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\variance der_col.Inputs[Derived Column Input].Columns[EXPECTED_STOCK]"
+                      cachedDataType="wstr"
+                      cachedLength="38"
+                      cachedName="EXPECTED_STOCK"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]" />
+                    <inputColumn
+                      refId="Package\Reconcile Stock Data\variance der_col.Inputs[Derived Column Input].Columns[CURRENT_STOCK]"
+                      cachedDataType="numeric"
+                      cachedName="CURRENT_STOCK"
+                      cachedPrecision="10"
+                      lineageId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[CURRENT_STOCK]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Reconcile Stock Data\variance der_col.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output].Columns[variance]"
+                      name="variance"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[ISNULL]((DT_I4)#{Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[CURRENT_STOCK]}) ? (0 - ([ISNULL]((DT_I4)#{Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]}) ? 0 : (DT_I4)#{Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]})) : ((DT_I4)#{Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[CURRENT_STOCK]} - ([ISNULL]((DT_I4)#{Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]}) ? 0 : (DT_I4)#{Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output].Columns[EXPECTED_STOCK]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL((DT_I4)CURRENT_STOCK) ? (0 - (ISNULL((DT_I4)EXPECTED_STOCK) ? 0 : (DT_I4)EXPECTED_STOCK)) : ((DT_I4)CURRENT_STOCK - (ISNULL((DT_I4)EXPECTED_STOCK) ? 0 : (DT_I4)EXPECTED_STOCK))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Reconcile Stock Data\variance der_col.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Reconcile Stock Data.Paths[Acceptable Rows]"
+              endId="Package\Reconcile Stock Data\Flat File Destination 1.Inputs[Flat File Destination Input]"
+              name="Acceptable Rows"
+              startId="Package\Reconcile Stock Data\Conditional Split.Outputs[Acceptable Rows]" />
+            <path
+              refId="Package\Reconcile Stock Data.Paths[Derived Column Output]"
+              endId="Package\Reconcile Stock Data\status der_col.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Reconcile Stock Data\variance der_col.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Reconcile Stock Data.Paths[Derived Column Output1]"
+              endId="Package\Reconcile Stock Data\Conditional Split.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\Reconcile Stock Data\status der_col.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Reconcile Stock Data.Paths[Large Variance Rows]"
+              endId="Package\Reconcile Stock Data\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="Large Variance Rows"
+              startId="Package\Reconcile Stock Data\Conditional Split.Outputs[Large Variance Rows]" />
+            <path
+              refId="Package\Reconcile Stock Data.Paths[Merge Join Output]"
+              endId="Package\Reconcile Stock Data\variance der_col.Inputs[Derived Column Input]"
+              name="Merge Join Output"
+              startId="Package\Reconcile Stock Data\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Reconcile Stock Data.Paths[OLE DB Source Output]"
+              endId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Left Input]"
+              name="OLE DB Source Output"
+              startId="Package\Reconcile Stock Data\OLE DB Source_inv_mast.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\Reconcile Stock Data.Paths[OLE DB Source Output1]"
+              endId="Package\Reconcile Stock Data\Merge Join.Inputs[Merge Join Right Input]"
+              name="OLE DB Source Output"
+              startId="Package\Reconcile Stock Data\OLE DB Source_inv_txn.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{F757AB1E-30B0-4273-B8B7-78091FB94919}"
+      DTS:EventID="0"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{F5E5086D-5382-4F28-9F2A-ED415460C46A}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="177.6,41.6"
+          Id="Package\Reconcile Stock Data"
+          TopLeft="322.499982379378,95.3333326703972" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Reconcile Stock Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\Reconcile Stock Data\OLE DB Source_inv_txn"
+          TopLeft="364.99998005728,58.0666662628783" />
+        <NodeLayout
+          Size="143.2,41.6"
+          Id="Package\Reconcile Stock Data\status der_col"
+          TopLeft="264.166652233237,308.533331187831" />
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\Reconcile Stock Data\OLE DB Source_inv_mast"
+          TopLeft="143.333325501946,56.3333329415984" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Reconcile Stock Data\Merge Join"
+          TopLeft="291.666650730703,146.466665648156" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Reconcile Stock Data\variance der_col"
+          TopLeft="278.333318125871,227.066665087673" />
+        <EdgeLayout
+          Id="Package\Reconcile Stock Data.Paths[Merge Join Output]"
+          TopLeft="355.999984428287,188.066665648156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.9999994395176"
+              Start="0,0"
+              End="0,31.4999994395176">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.4999994395176" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,7.74999971975878,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reconcile Stock Data.Paths[Derived Column Output]"
+          TopLeft="355.533318125871,268.666665087673">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.7666658926344,39.8666661001572"
+              Start="0,0"
+              End="-19.7666658926344,32.3666661001572">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.9333330500786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.9333330500786"
+                    Point2="0,19.9333330500786"
+                    Point3="-4,19.9333330500786" />
+                  <mssgle:LineSegment
+                    End="-15.7666658926344,19.9333330500786" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.7666658926344,19.9333330500786"
+                    Point2="-19.7666658926344,19.9333330500786"
+                    Point3="-19.7666658926344,23.9333330500786" />
+                  <mssgle:LineSegment
+                    End="-19.7666658926344,32.3666661001572" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reconcile Stock Data.Paths[OLE DB Source Output1]"
+          TopLeft="460.59998005728,99.6666662628783">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-83.8666626599104,46.7999993852776"
+              Start="0,0"
+              End="-83.8666626599104,39.2999993852776">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.7375606112743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.7375606112743"
+                    Point2="0,27.7375606112743"
+                    Point3="-4,27.7375606112743" />
+                  <mssgle:LineSegment
+                    End="-79.8666626599104,27.7375606112743" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-79.8666626599104,27.7375606112743"
+                    Point2="-83.8666626599104,27.7375606112743"
+                    Point3="-83.8666626599104,31.7375606112743" />
+                  <mssgle:LineSegment
+                    End="-83.8666626599104,39.2999993852776" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-49.9333313299552,32.7375606112743,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Reconcile Stock Data.Paths[OLE DB Source Output]"
+          TopLeft="242.933325501946,97.9333329415984">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.2666585620902,48.5333327065575"
+              Start="0,0"
+              End="93.2666585620902,41.0333327065575">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.7648776773011" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.7648776773011"
+                    Point2="0,28.7648776773011"
+                    Point3="4,28.7648776773011" />
+                  <mssgle:LineSegment
+                    End="89.2666585620902,28.7648776773011" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.2666585620902,28.7648776773011"
+                    Point2="93.2666585620902,28.7648776773011"
+                    Point3="93.2666585620902,32.7648776773011" />
+                  <mssgle:LineSegment
+                    End="93.2666585620902,41.0333327065575" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="38.6333292810451,33.7648776773011,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Reconcile Stock Data\Conditional Split"
+          TopLeft="355.833313891458,387.399997306069" />
+        <EdgeLayout
+          Id="Package\Reconcile Stock Data.Paths[Derived Column Output1]"
+          TopLeft="335.766652233237,350.133331187831">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96.8666616582212,37.2666661182383"
+              Start="0,0"
+              End="96.8666616582212,29.7666661182383">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.6333330591192" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.6333330591192"
+                    Point2="0,18.6333330591192"
+                    Point3="4,18.6333330591192" />
+                  <mssgle:LineSegment
+                    End="92.8666616582212,18.6333330591192" />
+                  <mssgle:CubicBezierSegment
+                    Point1="92.8666616582212,18.6333330591192"
+                    Point2="96.8666616582212,18.6333330591192"
+                    Point3="96.8666616582212,22.6333330591192" />
+                  <mssgle:LineSegment
+                    End="96.8666616582212,29.7666661182383" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\Reconcile Stock Data\Flat File Destination"
+          TopLeft="254.166652779613,481.133330193427" />
+        <EdgeLayout
+          Id="Package\Reconcile Stock Data.Paths[Large Variance Rows]"
+          TopLeft="408.366647224791,428.999997306069">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-68.9999944451784,52.133332887358"
+              Start="0,0"
+              End="-68.9999944451784,44.633332887358">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.1758073789887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.1758073789887"
+                    Point2="0,21.1758073789887"
+                    Point3="-4,21.1758073789887" />
+                  <mssgle:LineSegment
+                    End="-64.9999944451784,21.1758073789887" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-64.9999944451784,21.1758073789887"
+                    Point2="-68.9999944451784,21.1758073789887"
+                    Point3="-68.9999944451784,25.1758073789887" />
+                  <mssgle:LineSegment
+                    End="-68.9999944451784,44.633332887358" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-81.1425753475892,26.1758073789887,93.28515625,11.384765625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="179.2,41.6"
+          Id="Package\Reconcile Stock Data\Flat File Destination 1"
+          TopLeft="519.999971588454,482.733329976466" />
+        <EdgeLayout
+          Id="Package\Reconcile Stock Data.Paths[Acceptable Rows]"
+          TopLeft="456.899980558124,428.999997306069">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="152.69999103033,53.733332670397"
+              Start="0,0"
+              End="152.69999103033,46.233332670397">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8257041980788" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8257041980788"
+                    Point2="0,21.8257041980788"
+                    Point3="4,21.8257041980788" />
+                  <mssgle:LineSegment
+                    End="148.69999103033,21.8257041980788" />
+                  <mssgle:CubicBezierSegment
+                    Point1="148.69999103033,21.8257041980788"
+                    Point2="152.69999103033,21.8257041980788"
+                    Point3="152.69999103033,25.8257041980788" />
+                  <mssgle:LineSegment
+                    End="152.69999103033,46.233332670397" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="38.2543509839148,26.8257041980788,76.1912890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reconcile Stock Data\OLE DB Source_inv_mast">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Reconcile Stock Data\OLE DB Source_inv_txn">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\Reconcile Stock Data.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Reconcile Stock Data.EventHandlers[OnError]\Log Error to Audit Trail"
+          TopLeft="286.999995723367,172.999997422099" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2488 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/26/2025 3:58:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SRUTHI"
+  DTS:CreatorName="SRUTHI\sruth"
+  DTS:DTSID="{D9C6C016-CE89-47CB-9D8B-1A35938322B3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="16393"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{27C73645-D2C6-4A2E-B5B5-82FA1543F063}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[.sruthi]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3E793571-9E68-420F-BF1C-F4ED34B438B3}"
+      DTS:ObjectName=".sruthi">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=SRUTHI;User ID=sruthi;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAlVfQEgAbUkCcAHONq38ieQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABxMXQwx1lMiFwIiN2VvxBDK5L6Y8JRaZXAo7jh6yxjzgAAAAAOgAAAAAIAACAAAADIo2LBmoBE6ML/Q0WZOx5VporupwbAirV/R/WpKk5b3hAAAADx/PXp9WfdNPp4MouxacR7QAAAAMLnIqRR616kWTfvT6Ti6xXloZLj8MRHTlG7UBLyn9XZmuAaqw2UQqPoFNiyxD82L1ydtk5HpoX8Q2RbeeFQioI</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Extract Validate Load Staging"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B183F9AF-5CEE-4B59-AA73-28C4830C4628}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Extract Validate Load Staging"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Extract Validate Load Staging\Conditional Split"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="Conditional Split"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Validate Load Staging\Conditional Split.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\Conditional Split.Inputs[Conditional Split Input].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="ErrorReason"
+                      lineageId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Validate Load Staging\Conditional Split.Outputs[InvalidRows]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="InvalidRows"
+                  synchronousInputId="Package\Extract Validate Load Staging\Conditional Split.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">![ISNULL](#{Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Output].Columns[ErrorReason]}) &amp;&amp; [LEN]([TRIM](#{Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Output].Columns[ErrorReason]})) &gt; 0</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">!ISNULL(ErrorReason) &amp;&amp; LEN(TRIM(ErrorReason)) &gt; 0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Validate Load Staging\Conditional Split.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\Conditional Split.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Validate Load Staging\Conditional Split.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\Conditional Split.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Validate Load Staging\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Extract Validate Load Staging\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\Derived Column.Inputs[Derived Column Input].Columns[QUANTITY]"
+                      cachedDataType="numeric"
+                      cachedName="QUANTITY"
+                      cachedPrecision="10"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\Derived Column.Inputs[Derived Column Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      lineageId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Match Output].Columns[PRODUCT_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Output].Columns[ErrorReason]"
+                      name="ErrorReason"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,200)(#{Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]} &lt;= 0 ? "Invalid Quantity" : ([ISNULL](#{Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Match Output].Columns[PRODUCT_ID]}) ? "Missing Product" : ""))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,200)(QUANTITY &lt;= 0 ? "Invalid Quantity" : (ISNULL(PRODUCTS.PRODUCT_ID) ? "Missing Product" : ""))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Validate Load Staging\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from "SRUTHI"."LOCATIONS"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from "SRUTHI"."LOCATIONS") "refTable"
+where "refTable"."LOCATION_ID" = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="LOCATION_ID" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LOCATION_NAME" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LOCATION_TYPE" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="COUNTRY" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SPECIALIZATION" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CAPACITY" dataType="DT_NUMERIC" length="0" precision="10" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ACTIVE_STATUS" dataType="DT_WSTR" length="1" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCATION_ID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Validate Load Staging\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.sruthi]"
+                  connectionManagerRefId="Package.ConnectionManagers[.sruthi]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Validate Load Staging\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\Lookup.Inputs[Lookup Input].Columns[LOCATION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LOCATION_ID"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCATION_ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">LOCATION_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Match Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Match Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">LOCATION_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Validate Load Staging\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">"SRUTHI"."PROD_STG_INV_TRX"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Validate Load Staging\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.sruthi]"
+                  connectionManagerRefId="Package.ConnectionManagers[.sruthi]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRANSACTION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TRANSACTION_ID"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRANSACTION_ID]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_ID]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRANSACTION_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TRANSACTION_TYPE"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRANSACTION_TYPE]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[QUANTITY]"
+                      cachedDataType="numeric"
+                      cachedName="QUANTITY"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UNIT_COST]"
+                      cachedDataType="numeric"
+                      cachedName="UNIT_COST"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNIT_COST]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[UNIT_COST]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TRANS_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TRANS_DATE"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRANS_DATE]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_DATE]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[REFERENCE_NO]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="REFERENCE_NO"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[REFERENCE_NO]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[REFERENCE_NO]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CREATED_BY]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="CREATED_BY"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CREATED_BY]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CREATED_BY]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      lineageId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Match Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LOCATION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LOCATION_ID"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOCATION_ID]"
+                      lineageId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Match Output].Columns[LOCATION_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STG_ID]"
+                      dataType="wstr"
+                      length="38"
+                      name="STG_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRANSACTION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="TRANSACTION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="LOCATION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRANSACTION_TYPE]"
+                      dataType="wstr"
+                      length="20"
+                      name="TRANSACTION_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNIT_COST]"
+                      dataType="numeric"
+                      name="UNIT_COST"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      name="TRANS_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[REFERENCE_NO]"
+                      dataType="wstr"
+                      length="50"
+                      name="REFERENCE_NO" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CREATED_BY]"
+                      dataType="wstr"
+                      length="50"
+                      name="CREATED_BY" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PLANT_FLAG]"
+                      dataType="wstr"
+                      length="1"
+                      name="PLANT_FLAG" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ERROR_REASON]"
+                      dataType="wstr"
+                      length="200"
+                      name="ERROR_REASON" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LOAD_TS]"
+                      dataType="dbTimeStamp"
+                      name="LOAD_TS" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Validate Load Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Validate Load Staging\OLE DB Destination 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">"SRUTHI"."PROD_QUALITY_LOG"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.sruthi]"
+                  connectionManagerRefId="Package.ConnectionManagers[.sruthi]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TRANSACTION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TRANSACTION_ID"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TRANSACTION_ID]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_ID]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TRANSACTION_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TRANSACTION_TYPE"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TRANSACTION_TYPE]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[QUANTITY]"
+                      cachedDataType="numeric"
+                      cachedName="QUANTITY"
+                      cachedPrecision="10"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[TRANS_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TRANS_DATE"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TRANS_DATE]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_DATE]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      lineageId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Match Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[LOCATION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LOCATION_ID"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LOCATION_ID]"
+                      lineageId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Match Output].Columns[LOCATION_ID]" />
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[ErrorReason]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="ErrorReason"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ERROR_REASON]"
+                      lineageId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Output].Columns[ErrorReason]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LOG_ID]"
+                      dataType="wstr"
+                      length="38"
+                      name="LOG_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TRANSACTION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="TRANSACTION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="LOCATION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TRANSACTION_TYPE]"
+                      dataType="wstr"
+                      length="20"
+                      name="TRANSACTION_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      name="TRANS_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[ERROR_REASON]"
+                      dataType="wstr"
+                      length="200"
+                      name="ERROR_REASON" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LOGGED_AT]"
+                      dataType="dbTimeStamp"
+                      name="LOGGED_AT" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Validate Load Staging\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT transaction_id, product_id, location_id, transaction_type,
+       quantity, unit_cost, trans_date, reference_no, created_by
+FROM INVENTORY_TRANSACTIONS</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Validate Load Staging\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.sruthi]"
+                  connectionManagerRefId="Package.ConnectionManagers[.sruthi]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANSACTION_ID]"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_ID]"
+                      name="TRANSACTION_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_ID]"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ID]"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANSACTION_TYPE]"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]"
+                      name="TRANSACTION_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QUANTITY]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      precision="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[UNIT_COST]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UNIT_COST]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[UNIT_COST]"
+                      name="UNIT_COST"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANS_DATE]"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_DATE]"
+                      name="TRANS_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[REFERENCE_NO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[REFERENCE_NO]"
+                      length="50"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[REFERENCE_NO]"
+                      name="REFERENCE_NO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CREATED_BY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CREATED_BY]"
+                      length="50"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[CREATED_BY]"
+                      name="CREATED_BY"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANSACTION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="TRANSACTION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="LOCATION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANSACTION_TYPE]"
+                      dataType="wstr"
+                      length="20"
+                      name="TRANSACTION_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="10" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[UNIT_COST]"
+                      dataType="numeric"
+                      name="UNIT_COST"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      name="TRANS_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[REFERENCE_NO]"
+                      dataType="wstr"
+                      length="50"
+                      name="REFERENCE_NO" />
+                    <externalMetadataColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CREATED_BY]"
+                      dataType="wstr"
+                      length="50"
+                      name="CREATED_BY" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANSACTION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANSACTION_ID]"
+                      name="TRANSACTION_ID" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANSACTION_TYPE]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANSACTION_TYPE]"
+                      name="TRANSACTION_TYPE" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QUANTITY]"
+                      dataType="numeric"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      precision="10" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UNIT_COST]"
+                      dataType="numeric"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[UNIT_COST]"
+                      name="UNIT_COST"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANS_DATE]"
+                      name="TRANS_DATE" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[REFERENCE_NO]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[REFERENCE_NO]"
+                      name="REFERENCE_NO" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CREATED_BY]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CREATED_BY]"
+                      name="CREATED_BY" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Extract Validate Load Staging\PRODUCTS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="PRODUCTS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from "SRUTHI"."PRODUCTS"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from "SRUTHI"."PRODUCTS") "refTable"
+where "refTable"."PRODUCT_ID" = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PRODUCT_ID" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PRODUCT_NAME" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CATEGORY" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UNIT_COST" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;referenceColumn name="WEIGHT_KG" dataType="DT_NUMERIC" length="0" precision="8" scale="3" codePage="0"/&gt;&lt;referenceColumn name="AUTOMOTIVE_GRADE" dataType="DT_WSTR" length="1" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ACTIVE_STATUS" dataType="DT_WSTR" length="1" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CREATED_DATE" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UPDATED_DATE" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Extract Validate Load Staging\PRODUCTS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.sruthi]"
+                  connectionManagerRefId="Package.ConnectionManagers[.sruthi]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Extract Validate Load Staging\PRODUCTS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Extract Validate Load Staging\PRODUCTS.Inputs[Lookup Input].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      lineageId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">PRODUCT_ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\PRODUCTS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Match Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="20"
+                      lineageId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Match Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PRODUCT_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\PRODUCTS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Extract Validate Load Staging\PRODUCTS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Extract Validate Load Staging.Paths[Conditional Split Default Output]"
+              endId="Package\Extract Validate Load Staging\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Conditional Split Default Output"
+              startId="Package\Extract Validate Load Staging\Conditional Split.Outputs[Conditional Split Default Output]" />
+            <path
+              refId="Package\Extract Validate Load Staging.Paths[Derived Column Output]"
+              endId="Package\Extract Validate Load Staging\Conditional Split.Inputs[Conditional Split Input]"
+              name="Derived Column Output"
+              startId="Package\Extract Validate Load Staging\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Extract Validate Load Staging.Paths[InvalidRows]"
+              endId="Package\Extract Validate Load Staging\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              name="InvalidRows"
+              startId="Package\Extract Validate Load Staging\Conditional Split.Outputs[InvalidRows]" />
+            <path
+              refId="Package\Extract Validate Load Staging.Paths[Lookup Match Output]"
+              endId="Package\Extract Validate Load Staging\Lookup.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Validate Load Staging\PRODUCTS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Validate Load Staging.Paths[Lookup Match Output1]"
+              endId="Package\Extract Validate Load Staging\Derived Column.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Extract Validate Load Staging\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Extract Validate Load Staging.Paths[OLE DB Source Output]"
+              endId="Package\Extract Validate Load Staging\PRODUCTS.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Extract Validate Load Staging\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{E4E8B8CC-5320-442D-90F4-961F3D468E36}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Start"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3E793571-9E68-420F-BF1C-F4ED34B438B3}"
+          SQLTask:SqlStatementSource="INSERT INTO ETL_RUN_LOG (job_name, status) &#xA;VALUES ('Load_Prod_Inventory', 'STARTED')&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Merge into PROD_DAILY_SUMMARY"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C9CFC206-D70D-4443-962B-AD4E4A3EABD6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Merge into PROD_DAILY_SUMMARY"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{3E793571-9E68-420F-BF1C-F4ED34B438B3}"
+          SQLTask:SqlStatementSource="MERGE INTO PROD_DAILY_SUMMARY p&#xA;USING (&#xA;  SELECT product_id,&#xA;         location_id,&#xA;         TRUNC(trans_date) AS trans_date,&#xA;         SUM(CASE WHEN transaction_type='RECEIPT' THEN quantity ELSE 0 END) AS produced_qty,&#xA;         SUM(CASE WHEN transaction_type='ISSUE' THEN quantity ELSE 0 END) AS issued_qty,&#xA;         COUNT(*) AS txn_count&#xA;  FROM PROD_STG_INV_TRX&#xA;  GROUP BY product_id, location_id, TRUNC(trans_date)&#xA;) s&#xA;ON (p.product_id = s.product_id &#xA;    AND p.location_id = s.location_id &#xA;    AND p.trans_date = s.trans_date)&#xA;WHEN MATCHED THEN UPDATE &#xA;   SET p.produced_qty = s.produced_qty,&#xA;       p.issued_qty   = s.issued_qty,&#xA;       p.txn_count    = s.txn_count,&#xA;       p.last_refresh_ts = SYSDATE&#xA;WHEN NOT MATCHED THEN INSERT &#xA;   (product_id, location_id, trans_date, produced_qty, issued_qty, txn_count)&#xA;   VALUES &#xA;   (s.product_id, s.location_id, s.trans_date, s.produced_qty, s.issued_qty, s.txn_count)&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PROD_DAILY_SUMMARY"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DF87D823-D9F3-497A-AA88-CF7981464DEC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PROD_DAILY_SUMMARY"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\PROD_DAILY_SUMMARY\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\PROD_DAILY_SUMMARY\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Inputs[Aggregate Input 1].Columns[PRODUCT_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="PRODUCT_ID"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]" />
+                    <inputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Inputs[Aggregate Input 1].Columns[LOCATION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="LOCATION_ID"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCATION_ID]" />
+                    <inputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Inputs[Aggregate Input 1].Columns[TRANS_DATE]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TRANS_DATE"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_DATE]" />
+                    <inputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Inputs[Aggregate Input 1].Columns[ProducedQty]"
+                      cachedDataType="numeric"
+                      cachedName="ProducedQty"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output].Columns[ProducedQty]" />
+                    <inputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Inputs[Aggregate Input 1].Columns[IssuedQty]"
+                      cachedDataType="numeric"
+                      cachedName="IssuedQty"
+                      cachedPrecision="12"
+                      cachedScale="2"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output].Columns[IssuedQty]" />
+                    <inputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Inputs[Aggregate Input 1].Columns[TRANSACTION_ID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TRANSACTION_ID"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[LOCATION_ID]"
+                      name="LOCATION_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCATION_ID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[TRANS_DATE]"
+                      name="TRANS_DATE">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_DATE]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[ProducedQty]"
+                      dataType="numeric"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[ProducedQty]"
+                      name="ProducedQty"
+                      precision="12"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output].Columns[ProducedQty]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[IssuedQty]"
+                      dataType="numeric"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[IssuedQty]"
+                      name="IssuedQty"
+                      precision="12"
+                      scale="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output].Columns[IssuedQty]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">4</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[TRANSACTION_ID]"
+                      dataType="ui8"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Aggregate.Outputs[Aggregate Output 1].Columns[TRANSACTION_ID]"
+                      name="TRANSACTION_ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_ID]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PROD_DAILY_SUMMARY\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\PROD_DAILY_SUMMARY\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Derived Column.Inputs[Derived Column Input].Columns[TRANSACTION_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="TRANSACTION_TYPE"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]" />
+                    <inputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Derived Column.Inputs[Derived Column Input].Columns[QUANTITY]"
+                      cachedDataType="numeric"
+                      cachedName="QUANTITY"
+                      cachedPrecision="10"
+                      cachedScale="2"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\PROD_DAILY_SUMMARY\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output].Columns[ProducedQty]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output].Columns[ProducedQty]"
+                      name="ProducedQty"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]} == "RECEIPT") ? #{Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]} : 0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(TRANSACTION_TYPE == "RECEIPT") ? QUANTITY : 0</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output].Columns[IssuedQty]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output].Columns[IssuedQty]"
+                      name="IssuedQty"
+                      precision="12"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(#{Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]} == "ISSUE") ? #{Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]} : 0</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(TRANSACTION_TYPE == "ISSUE") ? QUANTITY : 0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\PROD_DAILY_SUMMARY\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PROD_DAILY_SUMMARY\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+transaction_id,
+    product_id,
+    location_id,
+    transaction_type,
+    quantity,
+    CAST(trans_date AS DATE) AS trans_date
+FROM PROD_STG_INV_TRX</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.sruthi]"
+                  connectionManagerRefId="Package.ConnectionManagers[.sruthi]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_ID]"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ID]"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANSACTION_TYPE]"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_TYPE]"
+                      name="TRANSACTION_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QUANTITY]"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANS_DATE]"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANS_DATE]"
+                      name="TRANS_DATE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANSACTION_ID]"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].Columns[TRANSACTION_ID]"
+                      name="TRANSACTION_ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="PRODUCT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="LOCATION_ID" />
+                    <externalMetadataColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANSACTION_TYPE]"
+                      dataType="wstr"
+                      length="20"
+                      name="TRANSACTION_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      name="TRANS_DATE" />
+                    <externalMetadataColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TRANSACTION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      name="TRANSACTION_ID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANSACTION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANSACTION_ID]"
+                      name="TRANSACTION_ID" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRODUCT_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PRODUCT_ID]"
+                      name="PRODUCT_ID" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LOCATION_ID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LOCATION_ID]"
+                      name="LOCATION_ID" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANSACTION_TYPE]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANSACTION_TYPE]"
+                      name="TRANSACTION_TYPE" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QUANTITY]"
+                      dataType="numeric"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANS_DATE]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TRANS_DATE]"
+                      name="TRANS_DATE" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\PROD_DAILY_SUMMARY.Paths[Derived Column Output]"
+              endId="Package\PROD_DAILY_SUMMARY\Aggregate.Inputs[Aggregate Input 1]"
+              name="Derived Column Output"
+              startId="Package\PROD_DAILY_SUMMARY\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\PROD_DAILY_SUMMARY.Paths[OLE DB Source Output]"
+              endId="Package\PROD_DAILY_SUMMARY\Derived Column.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\PROD_DAILY_SUMMARY\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1FD02D3B-3E3A-404C-9A81-F291ED93ADA8}"
+      DTS:From="Package\Log Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Extract Validate Load Staging" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{03537D1F-F77A-40FD-9A74-F626695F7957}"
+      DTS:From="Package\Extract Validate Load Staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Merge into PROD_DAILY_SUMMARY" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{056BD3DA-5A8A-4B93-B4A2-8785E2285BBE}"
+      DTS:From="Package\Merge into PROD_DAILY_SUMMARY"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\PROD_DAILY_SUMMARY" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="215.2,41.6"
+          Id="Package\Extract Validate Load Staging"
+          TopLeft="119.999993443489,221.866665123834" />
+        <NodeLayout
+          Size="152,136.8"
+          Id="Package\Log Start"
+          TopLeft="169.99999071161,0.86666666063995" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Merge into PROD_DAILY_SUMMARY"
+          TopLeft="158.333324682382,328.466664382551" />
+        <NodeLayout
+          Size="203.2,41.6"
+          Id="Package\PROD_DAILY_SUMMARY"
+          TopLeft="133.333326048321,480.999996655186" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="245.99999071161,137.66666666064">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.3999972681208,84.1999984631936"
+              Start="0,0"
+              End="-18.3999972681208,76.6999984631936">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.0999992315968" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.0999992315968"
+                    Point2="0,42.0999992315968"
+                    Point3="-4,42.0999992315968" />
+                  <mssgle:LineSegment
+                    End="-14.3999972681208,42.0999992315968" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.3999972681208,42.0999992315968"
+                    Point2="-18.3999972681208,42.0999992315968"
+                    Point3="-18.3999972681208,46.0999992315968" />
+                  <mssgle:LineSegment
+                    End="-18.3999972681208,76.6999984631936" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="227.599993443489,263.466665123834">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.1333312388928,64.9999992587171"
+              Start="0,0"
+              End="13.1333312388928,57.4999992587171">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.4999996293586" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.4999996293586"
+                    Point2="0,32.4999996293586"
+                    Point3="4,32.4999996293586" />
+                  <mssgle:LineSegment
+                    End="9.13333123889282,32.4999996293586" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.13333123889282,32.4999996293586"
+                    Point2="13.1333312388928,32.4999996293586"
+                    Point3="13.1333312388928,36.4999996293586" />
+                  <mssgle:LineSegment
+                    End="13.1333312388928,57.4999992587171" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="237.833325365352,370.066664382551">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,110.933332272635"
+              Start="0,0"
+              End="0,103.433332272635">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,103.433332272635" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Extract Validate Load Staging">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Extract Validate Load Staging\OLE DB Destination"
+          TopLeft="106.666660838657,522.599996365905" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Extract Validate Load Staging\Derived Column"
+          TopLeft="89.999995082617,336.26666432831" />
+        <NodeLayout
+          Size="136.8,41.6"
+          Id="Package\Extract Validate Load Staging\PRODUCTS"
+          TopLeft="115.833327004479,102.266665955517" />
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Extract Validate Load Staging\Lookup"
+          TopLeft="113.333327141073,224.466665105753" />
+        <NodeLayout
+          Size="180,41.6"
+          Id="Package\Extract Validate Load Staging\OLE DB Destination 1"
+          TopLeft="400.833311432766,512.399996781747" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Extract Validate Load Staging\OLE DB Source"
+          TopLeft="119.166660155687,25.1333331585593" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Extract Validate Load Staging\Conditional Split"
+          TopLeft="112.499993853271,398.666663894389" />
+        <EdgeLayout
+          Id="Package\Extract Validate Load Staging.Paths[OLE DB Source Output]"
+          TopLeft="195.166660155687,66.7333331585593">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10.9333331512077,35.533332796958"
+              Start="0,0"
+              End="-10.9333331512077,28.033332796958">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.766666398479" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.766666398479"
+                    Point2="0,17.766666398479"
+                    Point3="-4,17.766666398479" />
+                  <mssgle:LineSegment
+                    End="-6.93333315120771,17.766666398479" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6.93333315120771,17.766666398479"
+                    Point2="-10.9333331512077,17.766666398479"
+                    Point3="-10.9333331512077,21.766666398479" />
+                  <mssgle:LineSegment
+                    End="-10.9333331512077,28.033332796958" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Validate Load Staging.Paths[Lookup Match Output1]"
+          TopLeft="168.066661111845,266.066665105753">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.1999992225569"
+              Start="0,0"
+              End="0,62.6999992225569">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.6999992225569" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,25.5453121112785,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Validate Load Staging.Paths[Lookup Match Output]"
+          TopLeft="184.233327004479,143.866665955517">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.4999998634063,80.5999991502361"
+              Start="0,0"
+              End="-14.4999998634063,73.0999991502361">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.299999575118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.299999575118"
+                    Point2="0,40.299999575118"
+                    Point3="-4,40.299999575118" />
+                  <mssgle:LineSegment
+                    End="-10.4999998634063,40.299999575118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.4999998634063,40.299999575118"
+                    Point2="-14.4999998634063,40.299999575118"
+                    Point3="-14.4999998634063,44.299999575118" />
+                  <mssgle:LineSegment
+                    End="-14.4999998634063,73.0999991502361" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.4413866504532,45.299999575118,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Validate Load Staging.Paths[InvalidRows]"
+          TopLeft="213.566660519938,440.266663894389">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="277.266650912828,72.1333328873582"
+              Start="0,0"
+              End="277.266650912828,64.6333328873582">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.299518719195" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.299518719195"
+                    Point2="0,29.299518719195"
+                    Point3="4,29.299518719195" />
+                  <mssgle:LineSegment
+                    End="273.266650912828,29.299518719195" />
+                  <mssgle:CubicBezierSegment
+                    Point1="273.266650912828,29.299518719195"
+                    Point2="277.266650912828,29.299518719195"
+                    Point3="277.266650912828,33.299518719195" />
+                  <mssgle:LineSegment
+                    End="277.266650912828,64.6333328873582" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="111.369145768914,34.299518719195,54.528359375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Validate Load Staging.Paths[Derived Column Output]"
+          TopLeft="242.799995082617,357.06666432831">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-53.5000012293457,41.5999995660782"
+              Start="0,0"
+              End="-53.5000012293457,34.0999995660782">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-49.5000012293457,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-49.5000012293457,0"
+                    Point2="-53.5000012293457,0"
+                    Point3="-53.5000012293457,4" />
+                  <mssgle:LineSegment
+                    End="-53.5000012293457,34.0999995660782" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Extract Validate Load Staging.Paths[Conditional Split Default Output]"
+          TopLeft="190.783327345964,440.266663894389">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82.3333324715162"
+              Start="0,0"
+              End="0,74.8333324715162">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.8333324715162" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-70.61390625,31.5875646732581,141.2278125,11.658203125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Validate Load Staging\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Validate Load Staging\PRODUCTS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">"SRUTHI"."PRODUCTS"</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Validate Load Staging\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">"SRUTHI"."LOCATIONS"</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Validate Load Staging\OLE DB Destination 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Extract Validate Load Staging\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\PROD_DAILY_SUMMARY">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\PROD_DAILY_SUMMARY\Derived Column"
+          TopLeft="370.999994471669,159.999997615814" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\PROD_DAILY_SUMMARY\OLE DB Source"
+          TopLeft="366.999994531274,0.999999985098796" />
+        <NodeLayout
+          Size="126.4,41.6"
+          Id="Package\PROD_DAILY_SUMMARY\Aggregate"
+          TopLeft="372.999994441867,278.999995842576" />
+        <EdgeLayout
+          Id="Package\PROD_DAILY_SUMMARY.Paths[OLE DB Source Output]"
+          TopLeft="445.199994501472,42.5999999850988">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,117.399997630715"
+              Start="0,0"
+              End="0,109.899997630715">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,109.899997630715" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,46.9499988153577,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\PROD_DAILY_SUMMARY.Paths[Derived Column Output]"
+          TopLeft="447.399994471669,201.599997615814">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11.2000000298023,77.3999982267618"
+              Start="0,0"
+              End="-11.2000000298023,69.8999982267618">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.6999991133809" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.6999991133809"
+                    Point2="0,38.6999991133809"
+                    Point3="-4,38.6999991133809" />
+                  <mssgle:LineSegment
+                    End="-7.20000002980225,38.6999991133809" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7.20000002980225,38.6999991133809"
+                    Point2="-11.2000000298023,38.6999991133809"
+                    Point3="-11.2000000298023,42.6999991133809" />
+                  <mssgle:LineSegment
+                    End="-11.2000000298023,69.8999982267618" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-13.6000000149011,43.6999991133809,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\PROD_DAILY_SUMMARY\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
