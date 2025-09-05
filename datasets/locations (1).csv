@@ -1,0 +1,51 @@
+Location ID,Location Name,Location Type,Country,Specialization,Production Capacity,Active Status
+IND-001,India Plant 1,PLANT,India,Control Cables,30000,N
+USA-002,USA Warehouse 2,WAREHOUSE,USA,Marine Cables,0,Y
+GER-003,Germany Rnd_Lab 3,RND_LAB,Germany,Flexible Cables,0,Y
+JAP-004,Japan Plant 4,PLANT,Japan,Next  Gen Cables,31500,Y
+AUS-005,Australia Warehouse 5,WAREHOUSE,Australia,Mining Cables,0,Y
+BRA-006,Brazil Rnd_Lab 6,RND_LAB,Brazil,High Voltage Cables,0,N
+CAN-007,Canada Plant 7,PLANT,Canada, Resistant Cables,33000,Y
+UK-008,UK Warehouse 8,WAREHOUSE,UK,Flexible Cables,0,Y
+IND-009,India Rnd_Lab 9,RND_LAB,India,Fiber Optic Cables,0,Y
+USA-010,USA Plant 10,PLANT,USA,High Voltage Cables,34500,Y
+GER-011,Germany Warehouse 11,WAREHOUSE,Germany,Automotive Cables,0,N
+JAP-012,Japan Rnd_Lab 12,RND_LAB,Japan,Data Cables,0,Y
+AUS-013,Australia Plant 13,PLANT,Australia,Marine Cables,36000,Y
+BRA-014,Brazil Warehouse 14,WAREHOUSE,Brazil,Control Cables,0,Y
+CAN-015,Canada Rnd_Lab 15,RND_LAB,Canada,Signal Cables,0,Y
+UK-016,UK Plant 16,PLANT,UK,Industrial Cables,37500,N
+IND-017,India Warehouse 17,WAREHOUSE,India,Power Cables,0,Y
+USA-018,USA Rnd_Lab 18,RND_LAB,USA,Signal Cables,0,Y
+GER-019,Germany Plant 19,PLANT,Germany,Advanced Cables,39000,Y
+JAP-020,Japan Warehouse 20,WAREHOUSE,Japan,Robotics Cables,0,Y
+AUS-021,Australia Rnd_Lab 21,RND_LAB,Australia,Power Cables,0,N
+BRA-022,Brazil Plant 22,PLANT,Brazil,Telecom Cables,40500,Y
+CAN-023,Canada Warehouse 23,WAREHOUSE,Canada,Fiber Optic Cables,0,Y
+UK-024,UK Rnd_Lab 24,RND_LAB,UK,Control Cables,0,Y
+IND-025,India Plant 25,PLANT,India,Control Cables,42000,Y
+USA-026,USA Warehouse 26,WAREHOUSE,USA,Marine Cables,0,N
+GER-027,Germany Rnd_Lab 27,RND_LAB,Germany,Flexible Cables,0,Y
+JAP-028,Japan Plant 28,PLANT,Japan,Next Gen Cable,43500,Y
+AUS-029,Australia Warehouse 29,WAREHOUSE,Australia,Mining Cables,0,Y
+BRA-030,Brazil Rnd_Lab 30,RND_LAB,Brazil,High Voltage Cables,0,Y
+CAN-031,Canada Plant 31,PLANT,Canada,Resistant Cables,45000,N
+UK-032,UK Warehouse 32,WAREHOUSE,UK,Flexible Cables,0,Y
+IND-033,India Rnd_Lab 33,RND_LAB,India,Fiber Optic Cables,0,Y
+USA-034,USA Plant 34,PLANT,USA,High Voltage Cables,46500,Y
+GER-035,Germany Warehouse 35,WAREHOUSE,Germany,Automotive Cables,0,Y
+JAP-036,Japan Rnd_Lab 36,RND_LAB,Japan,Data Cables,0,N
+AUS-037,Australia Plant 37,PLANT,Australia,Marine Cables,48000,Y
+BRA-038,Brazil Warehouse 38,WAREHOUSE,Brazil,Control Cables,0,Y
+CAN-039,Canada Rnd_Lab 39,RND_LAB,Canada,Signal Cables,0,Y
+UK-040,UK Plant 40,PLANT,UK,Industrial Cables,49500,Y
+IND-041,India Warehouse 41,WAREHOUSE,India,Power Cables,0,N
+USA-042,USA Rnd_Lab 42,RND_LAB,USA,Signal Cables,0,Y
+GER-043,Germany Plant 43,PLANT,Germany,Advanced Cables,51000,Y
+JAP-044,Japan Warehouse 44,WAREHOUSE,Japan,Robotics Cables,0,Y
+AUS-045,Australia Rnd_Lab 45,RND_LAB,Australia,Power Cables,0,Y
+BRA-046,Brazil Plant 46,PLANT,Brazil,Telecom Cables,52500,N
+CAN-047,Canada Warehouse 47,WAREHOUSE,Canada,Fiber Optic Cables,0,Y
+UK-048,UK Rnd_Lab 48,RND_LAB,UK,Control Cables,0,Y
+IND-049,India Plant 49,PLANT,India,Control Cables,54000,Y
+USA-050,USA Warehouse 50,WAREHOUSE,USA,Marine Cables,0,Y
