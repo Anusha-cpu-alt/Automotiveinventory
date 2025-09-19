@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36408.4 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Day-4 Report", "Day-4 Report.rptproj", "{BEBE55DF-917A-495C-E250-17B857E2D788}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEBE55DF-917A-495C-E250-17B857E2D788}.Debug|Default.ActiveCfg = Debug
+		{BEBE55DF-917A-495C-E250-17B857E2D788}.Debug|Default.Build.0 = Debug
+		{BEBE55DF-917A-495C-E250-17B857E2D788}.Debug|Default.Deploy.0 = Debug
+		{BEBE55DF-917A-495C-E250-17B857E2D788}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{BEBE55DF-917A-495C-E250-17B857E2D788}.DebugLocal|Default.Build.0 = DebugLocal
+		{BEBE55DF-917A-495C-E250-17B857E2D788}.Release|Default.ActiveCfg = Release
+		{BEBE55DF-917A-495C-E250-17B857E2D788}.Release|Default.Build.0 = Release
+		{BEBE55DF-917A-495C-E250-17B857E2D788}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9901927E-659A-433B-9BB7-B45FF31F1582}
+	EndGlobalSection
+EndGlobal
